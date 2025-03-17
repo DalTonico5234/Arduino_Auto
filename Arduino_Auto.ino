@@ -1,4 +1,13 @@
 // Basic demo for accelerometer readings from Adafruit MPU6050
+#define BLYNK_TEMPLATE_ID           "TMPL2igSWEv0z"
+#define BLYNK_TEMPLATE_NAME         "Quickstart Device"
+#define BLYNK_AUTH_TOKEN            "4a80gtBmqu1YbQ10mDbAVDO1LK5C2Tj9"
+
+#define BLYNK_PRINT Serial
+
+const int DIR = 12;
+const int STEP = 14;
+const int steps_per_rev = 200;
 
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
@@ -6,6 +15,8 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp32.h>
+
+
 /*************************************************************
 
   This is a simple demo of sending and receiving some data.
@@ -13,22 +24,20 @@
  *************************************************************/
 
 /* Fill-in information from Blynk Device Info here */
-#define BLYNK_TEMPLATE_ID "TMPL2igSWEv0z"
-#define BLYNK_TEMPLATE_NAME "Quickstart Device"
-#define BLYNK_AUTH_TOKEN "4a80gtBmqu1YbQ10mDbAVDO1LK5C2Tj9"
 
 /* Comment this out to disable prints and save space */
-#define BLYNK_PRINT Serial
 
-const int DIR = 12;
-const int STEP = 14;
-const int steps_per_rev = 200;
 
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-// char ssid[] = "Teste Pic";
-// char pass[] = "agoravai";
+//char ssid[] = "Teste Pic";
+//char pass[] = "agoravai";
+
+char ssid[] = "S23NET5234";
+char pass[] = "MORREUFESPRAGA";
+
+
 
 BlynkTimer timer;
 
@@ -41,9 +50,9 @@ BLYNK_WRITE(V4)
   for (int i = 0; i < steps_per_rev; i++)
   {
     digitalWrite(STEP, HIGH);
-    delayMicroseconds(5000);
+    delayMicroseconds(10000);
     digitalWrite(STEP, LOW);
-    delayMicroseconds(5000);
+    delayMicroseconds(10000);
   }
 }
 BLYNK_WRITE(V5)
@@ -54,9 +63,9 @@ BLYNK_WRITE(V5)
   for (int i = 0; i < steps_per_rev; i++)
   {
     digitalWrite(STEP, HIGH);
-    delayMicroseconds(5000);
+    delayMicroseconds(10000);
     digitalWrite(STEP, LOW);
-    delayMicroseconds(5000);
+    delayMicroseconds(10000);
   }
 }
 
@@ -80,7 +89,7 @@ Adafruit_MPU6050 mpu;
 void setup(void)
 {
   Serial.begin(115200);
-  // Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
   //  You can also specify server:
   // Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass, "blynk.cloud", 80);
   // Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass, IPAddress(192,168,1,100), 8080);
@@ -158,28 +167,22 @@ void loop()
 
   // balance();
 
-  if (a.acceleration.z < -2)
-  {
-    digitalWrite(DIR, LOW);
-    // while (g.acceleration.x> -8)
-    //{
-    digitalWrite(STEP, HIGH);
-    delayMicroseconds(5000);
-    digitalWrite(STEP, LOW);
+  //if (a.acceleration.z < -2)
+  //{
+   // digitalWrite(DIR, LOW);
+   // digitalWrite(STEP, HIGH);
+   // delayMicroseconds(10000);
+   // digitalWrite(STEP, LOW);
 
-    //}
-  }
-  else if (a.acceleration.z > 2)
-  {
-    digitalWrite(DIR, HIGH);
-    // while (g.acceleration.x<-11)
-    //  {
-    digitalWrite(STEP, HIGH);
-    delayMicroseconds(5000);
-    digitalWrite(STEP, LOW);
+  //}
+  //else if (a.acceleration.z > 2)
+  //{
+   // digitalWrite(DIR, HIGH);
+   // digitalWrite(STEP, HIGH);
+    //delayMicroseconds(10000);
+   // digitalWrite(STEP, LOW);
 
-    //}
-  }
+  //}
 
   Blynk.run();
   timer.run();
