@@ -4,8 +4,6 @@
 #outros
 Makefile
 main
-*.pdf
-
 
 # Prerequisites
 *.d

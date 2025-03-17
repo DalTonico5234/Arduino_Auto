@@ -14,8 +14,7 @@ Seu código é executado por uma placa ESP32S NodeMcu ESP-12, que faz todos os c
 A placa recebe uma tensão de entrada de 5V, obtida usando uma bateria alcalina de 9V e um Regulador de Tensão Step Down LM2596.\
 Ambos os motores recebem a alimentação de outra bateria alcalina de 9V, conectada ao driver.
 
-Esquemático completo do projeto:
-![Esquemático completo do projeto](/esquematico.pdf)
+![Esquemático completo do projeto][/esquematico.pdf]
 
 ## Código
 O código do projeto inclui as bibliotecas da Adafruit para o MPU-6050 e para sensores gerais. Também inclui as bibliotecas de conexão Wire, Wifi, WifiClient e a biblioteca do aplicativo Blynk BlynkSimpleEsp32.
